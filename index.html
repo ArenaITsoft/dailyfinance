@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OM Finance - Daily Finance Delhi</title>
+    <!-- Google Fonts for premium UI look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0F2942;   /* Deep Navy Blue for Trust */
+            --secondary: #10B981; /* Emerald Green for Financial Growth */
+            --accent: #F59E0B;    /* Warm Gold for Main CTA */
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(15, 41, 66, 0.08);
+            overflow: hidden;
+            border: 1px solid #E5E7EB;
+        }
+
+        /* Header Component */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1E3A8A 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 span {
+            color: var(--accent);
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #E5E7EB;
+            font-weight: 400;
+        }
+
+        .content-box {
+            padding: 25px 20px;
+        }
+
+        /* Calculator UI Section */
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .calculator-card {
+            background: #F3F4F6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .label-group {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .amount-display {
+            color: var(--secondary);
+            font-size: 16px;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #D1D5DB;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .result-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #E5E7EB;
+        }
+
+        .result-item span {
+            display: block;
+            font-size: 11px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .result-item strong {
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        /* Form UI Section */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(15, 41, 66, 0.1);
+        }
+
+        select.form-control {
+            background-color: white;
+        }
+
+        /* High Conversion Buttons */
+        .btn-submit {
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-submit:hover {
+            background: #059669;
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+        }
+
+        .trust-badge {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>OM <span>FINANCE</span></h1>
+        <p>Fast Daily Basis Business Loans in Delhi NCR • Same Day Cash Payout</p>
+    </div>
+
+    <div class="content-box">
+        <!-- Section 1: UX Hook Calculator -->
+        <div class="section-title">📊 Calculate Your Daily Installment</div>
+        <div class="calculator-card">
+            <div class="label-group">
+                <label for="loanAmount">Required Loan Amount</label>
+                <span class="amount-display" id="amountVal">₹50,000</span>
+            </div>
+            <input type="range" min="10000" max="200000" step="5000" value="50000" class="slider" id="loanAmount">
+
+            <div class="label-group">
+                <label for="loanDuration">Duration (Days)</label>
+                <span class="amount-display" id="durationVal">100 Days</span>
+            </div>
+            <input type="range" min="30" max="180" step="10" value="100" class="slider" id="loanDuration">
+
+            <div class="result-grid">
+                <div class="result-item">
+                    <span>Daily Repayment</span>
+                    <strong id="dailyPay">₹600</strong>
+                </div>
+                <div class="result-item">
+                    <span>Total Payback</span>
+                    <strong id="totalPay">₹60,000</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Enquiry Capture Form -->
+        <div class="section-title">📝 Submit Borrower Enquiry</div>
+        <form id="enquiryForm">
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="borrowerName" class="form-control" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label>WhatsApp / Mobile Number *</label>
+                <input type="tel" id="borrowerPhone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Shop / Business Name & Market Location *</label>
+                <input type="text" id="borrowerLocation" class="form-control" placeholder="e.g., Laxmi Traders, Chandni Chowk" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Apply Securely Now</button>
+        </form>
+
+        <!-- Alternative Fast-Track Option -->
+        <a href="#" id="directWA" class="btn-whatsapp" target="_blank">
+            💬 Connect Instantly on WhatsApp
+        </a>
+
+        <div class="trust-badge">
+            🔒 Your data is safe. We only provide loans to local business owners verified in Delhi NCR.
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const amountSlider = document.getElementById('loanAmount');
+        const durationSlider = document.getElementById('loanDuration');
+        const amountVal = document.getElementById('amountVal');
+        const durationVal = document.getElementById('durationVal');
+        const dailyPayDisplay = document.getElementById('dailyPay');
+        const totalPayDisplay = document.getElementById('totalPay');
+        const directWABtn = document.getElementById('directWA');
+        const enquiryForm = document.getElementById('enquiryForm');
+
+        function calculateLoan() {
+            const principal = parseInt(amountSlider.value);
+            const days = parseInt(durationSlider.value);
+            
+            amountVal.innerText = "₹" + principal.toLocaleString('en-IN');
+            durationVal.innerText = days + " Days";
+
+            const totalInterest = principal * 0.20 * (days / 100); 
+            const totalPayback = principal + totalInterest;
+            const dailyInstallment = Math.round(totalPayback / days);
+
+            dailyPayDisplay.innerText = "₹" + dailyInstallment.toLocaleString('en-IN');
+            totalPayDisplay.innerText = "₹" + Math.round(totalPayback).toLocaleString('en-IN');
+
+            const waText = encodeURIComponent(`Hello OM Finance, I want to inquire about a daily loan of ₹${principal.toLocaleString('en-IN')} for ${days} days.`);
+            directWABtn.href = `https://wa.me/917056355656?text=${waText}`; 
+        }
+
+        amountSlider.addEventListener('input', calculateLoan);
+        durationSlider.addEventListener('input', calculateLoan);
+        
+        // Initial setup calculation
+        calculateLoan();
+
+        enquiryForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('borrowerName').value;
+            const phone = document.getElementById('borrowerPhone').value;
+            const location = document.getElementById('borrowerLocation').value;
+            const selectedAmount = amountSlider.value;
+            const selectedDays = durationSlider.value;
+
+            const finalMessage = `*NEW LOAN ENQUIRY - OM FINANCE*%0A%0A` +
+                                 `👤 *Name:* ${name}%0A` +
+                                 `📞 *Phone:* ${phone}%0A` +
+                                 `🏪 *Business/Market:* ${location}%0A` +
+                                 `💰 *Requested Amount:* ₹${parseInt(selectedAmount).toLocaleString('en-IN')}%0A` +
+                                 `⏱️ *Preferred Duration:* ${selectedDays} Days`;
+
+            const whatsappUrl = `https://wa.me/917056355656?text=${finalMessage}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    });
+</script>
+<script>
+    document.addEventListener('contextmenu', function (event) {
+      event.preventDefault();
+    });
+  </script>
+
+</body>
+</html>
